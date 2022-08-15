@@ -1,0 +1,564 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{AC6FE63B-0A99-49C6-B9D6-AFDED8F1A1DA}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>emmVRC</RootNamespace>
+    <AssemblyName>emmVRC</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>..\..\..\..\Quest assemblys\Assembly-CSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Assembly-CSharp-firstpass">
+      <HintPath>..\..\..\..\Quest assemblys\Assembly-CSharp-firstpass.dll</HintPath>
+    </Reference>
+    <Reference Include="AVProVideo.Runtime">
+      <HintPath>..\..\..\..\Quest assemblys\AVProVideo.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="DataModel">
+      <HintPath>..\..\..\..\Quest assemblys\DataModel.dll</HintPath>
+    </Reference>
+    <Reference Include="Il2CppMono.Security">
+      <HintPath>..\..\..\..\Quest assemblys\Il2CppMono.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Il2Cppmscorlib">
+      <HintPath>..\..\..\..\Quest assemblys\Il2Cppmscorlib.dll</HintPath>
+    </Reference>
+    <Reference Include="Il2CppSystem">
+      <HintPath>..\..\..\..\Quest assemblys\Il2CppSystem.dll</HintPath>
+    </Reference>
+    <Reference Include="Il2CppSystem.Buffers">
+      <HintPath>..\..\..\..\Quest assemblys\Il2CppSystem.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="Il2CppSystem.Collections.Immutable">
+      <HintPath>..\..\..\..\Quest assemblys\Il2CppSystem.Collections.Immutable.dll</HintPath>
+    </Reference>
+    <Reference Include="Il2CppSystem.Configuration">
+      <HintPath>..\..\..\..\Quest assemblys\Il2CppSystem.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Il2CppSystem.Core">
+      <HintPath>..\..\..\..\Quest assemblys\Il2CppSystem.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Il2CppSystem.Diagnostics.StackTrace">
+      <HintPath>..\..\..\..\Quest assemblys\Il2CppSystem.Diagnostics.StackTrace.dll</HintPath>
+    </Reference>
+    <Reference Include="Il2CppSystem.Globalization.Extensions">
+      <HintPath>..\..\..\..\Quest assemblys\Il2CppSystem.Globalization.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Il2CppSystem.IO.Compression">
+      <HintPath>..\..\..\..\Quest assemblys\Il2CppSystem.IO.Compression.dll</HintPath>
+    </Reference>
+    <Reference Include="Il2CppSystem.Memory">
+      <HintPath>..\..\..\..\Quest assemblys\Il2CppSystem.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="Il2CppSystem.Numerics.Vectors">
+      <HintPath>..\..\..\..\Quest assemblys\Il2CppSystem.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="Il2CppSystem.Runtime">
+      <HintPath>..\..\..\..\Quest assemblys\Il2CppSystem.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Il2CppSystem.Runtime.CompilerServices.Unsafe">
+      <HintPath>..\..\..\..\Quest assemblys\Il2CppSystem.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="Il2CppSystem.Runtime.Serialization">
+      <HintPath>..\..\..\..\Quest assemblys\Il2CppSystem.Runtime.Serialization.dll</HintPath>
+    </Reference>
+    <Reference Include="Il2CppSystem.Threading.Tasks.Extensions">
+      <HintPath>..\..\..\..\Quest assemblys\Il2CppSystem.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Il2CppSystem.ValueTuple">
+      <HintPath>..\..\..\..\Quest assemblys\Il2CppSystem.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="Il2CppSystem.Xml">
+      <HintPath>..\..\..\..\Quest assemblys\Il2CppSystem.Xml.dll</HintPath>
+    </Reference>
+    <Reference Include="Il2CppSystem.Xml.Linq">
+      <HintPath>..\..\..\..\Quest assemblys\Il2CppSystem.Xml.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="MelonLoader">
+      <HintPath>..\..\..\..\MelonLoader.dll</HintPath>
+    </Reference>
+    <Reference Include="Oculus.Platform">
+      <HintPath>..\..\..\..\Quest assemblys\Oculus.Platform.dll</HintPath>
+    </Reference>
+    <Reference Include="Oculus.VR">
+      <HintPath>..\..\..\..\Quest assemblys\Oculus.VR.dll</HintPath>
+    </Reference>
+    <Reference Include="OscCore.Runtime">
+      <HintPath>..\..\..\..\Quest assemblys\OscCore.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Photon-DotNet">
+      <HintPath>..\..\..\..\Quest assemblys\Photon-DotNet.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Transmtn">
+      <HintPath>..\..\..\..\Quest assemblys\Transmtn.dll</HintPath>
+    </Reference>
+    <Reference Include="UnhollowerBaseLib">
+      <HintPath>..\..\..\..\Quest assemblys\UnhollowerBaseLib.dll</HintPath>
+    </Reference>
+    <Reference Include="UnhollowerRuntimeLib">
+      <HintPath>..\..\..\..\Quest assemblys\UnhollowerRuntimeLib.dll</HintPath>
+    </Reference>
+    <Reference Include="UniTask">
+      <HintPath>..\..\..\..\Quest assemblys\UniTask.dll</HintPath>
+    </Reference>
+    <Reference Include="UniTask.Addressables">
+      <HintPath>..\..\..\..\Quest assemblys\UniTask.Addressables.dll</HintPath>
+    </Reference>
+    <Reference Include="UniTask.DOTween">
+      <HintPath>..\..\..\..\Quest assemblys\UniTask.DOTween.dll</HintPath>
+    </Reference>
+    <Reference Include="UniTask.Linq">
+      <HintPath>..\..\..\..\Quest assemblys\UniTask.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="UniTask.TextMeshPro">
+      <HintPath>..\..\..\..\Quest assemblys\UniTask.TextMeshPro.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Burst">
+      <HintPath>..\..\..\..\Quest assemblys\Unity.Burst.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Burst.Unsafe">
+      <HintPath>..\..\..\..\Quest assemblys\Unity.Burst.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.InputSystem">
+      <HintPath>..\..\..\..\Quest assemblys\Unity.InputSystem.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Mathematics">
+      <HintPath>..\..\..\..\Quest assemblys\Unity.Mathematics.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Postprocessing.Runtime">
+      <HintPath>..\..\..\..\Quest assemblys\Unity.Postprocessing.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.TextMeshPro">
+      <HintPath>..\..\..\..\Quest assemblys\Unity.TextMeshPro.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Timeline">
+      <HintPath>..\..\..\..\Quest assemblys\Unity.Timeline.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>..\..\..\..\Quest assemblys\UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AccessibilityModule">
+      <HintPath>..\..\..\..\Quest assemblys\UnityEngine.AccessibilityModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AIModule">
+      <HintPath>..\..\..\..\Quest assemblys\UnityEngine.AIModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AndroidJNIModule">
+      <HintPath>..\..\..\..\Quest assemblys\UnityEngine.AndroidJNIModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AnimationModule">
+      <HintPath>..\..\..\..\Quest assemblys\UnityEngine.AnimationModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ARModule">
+      <HintPath>..\..\..\..\Quest assemblys\UnityEngine.ARModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AssetBundleModule">
+      <HintPath>..\..\..\..\Quest assemblys\UnityEngine.AssetBundleModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AudioModule">
+      <HintPath>..\..\..\..\Quest assemblys\UnityEngine.AudioModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ClothModule">
+      <HintPath>..\..\..\..\Quest assemblys\UnityEngine.ClothModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>..\..\..\..\Quest assemblys\UnityEngine.CoreModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.CrashReportingModule">
+      <HintPath>..\..\..\..\Quest assemblys\UnityEngine.CrashReportingModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.DirectorModule">
+      <HintPath>..\..\..\..\Quest assemblys\UnityEngine.DirectorModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.DSPGraphModule">
+      <HintPath>..\..\..\..\Quest assemblys\UnityEngine.DSPGraphModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.GameCenterModule">
+      <HintPath>..\..\..\..\Quest assemblys\UnityEngine.GameCenterModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.GridModule">
+      <HintPath>..\..\..\..\Quest assemblys\UnityEngine.GridModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.HotReloadModule">
+      <HintPath>..\..\..\..\Quest assemblys\UnityEngine.HotReloadModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ImageConversionModule">
+      <HintPath>..\..\..\..\Quest assemblys\UnityEngine.ImageConversionModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.IMGUIModule">
+      <HintPath>..\..\..\..\Quest assemblys\UnityEngine.IMGUIModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.InputLegacyModule">
+      <HintPath>..\..\..\..\Quest assemblys\UnityEngine.InputLegacyModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.InputModule">
+      <HintPath>..\..\..\..\Quest assemblys\UnityEngine.InputModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.JSONSerializeModule">
+      <HintPath>..\..\..\..\Quest assemblys\UnityEngine.JSONSerializeModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.LocalizationModule">
+      <HintPath>..\..\..\..\Quest assemblys\UnityEngine.LocalizationModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ParticleSystemModule">
+      <HintPath>..\..\..\..\Quest assemblys\UnityEngine.ParticleSystemModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.PerformanceReportingModule">
+      <HintPath>..\..\..\..\Quest assemblys\UnityEngine.PerformanceReportingModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.Physics2DModule">
+      <HintPath>..\..\..\..\Quest assemblys\UnityEngine.Physics2DModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.PhysicsModule">
+      <HintPath>..\..\..\..\Quest assemblys\UnityEngine.PhysicsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ProfilerModule">
+      <HintPath>..\..\..\..\Quest assemblys\UnityEngine.ProfilerModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ScreenCaptureModule">
+      <HintPath>..\..\..\..\Quest assemblys\UnityEngine.ScreenCaptureModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.SharedInternalsModule">
+      <HintPath>..\..\..\..\Quest assemblys\UnityEngine.SharedInternalsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.SpriteMaskModule">
+      <HintPath>..\..\..\..\Quest assemblys\UnityEngine.SpriteMaskModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.SpriteShapeModule">
+      <HintPath>..\..\..\..\Quest assemblys\UnityEngine.SpriteShapeModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.StreamingModule">
+      <HintPath>..\..\..\..\Quest assemblys\UnityEngine.StreamingModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.SubstanceModule">
+      <HintPath>..\..\..\..\Quest assemblys\UnityEngine.SubstanceModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.SubsystemsModule">
+      <HintPath>..\..\..\..\Quest assemblys\UnityEngine.SubsystemsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TerrainModule">
+      <HintPath>..\..\..\..\Quest assemblys\UnityEngine.TerrainModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TerrainPhysicsModule">
+      <HintPath>..\..\..\..\Quest assemblys\UnityEngine.TerrainPhysicsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TextCoreModule">
+      <HintPath>..\..\..\..\Quest assemblys\UnityEngine.TextCoreModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TextRenderingModule">
+      <HintPath>..\..\..\..\Quest assemblys\UnityEngine.TextRenderingModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TilemapModule">
+      <HintPath>..\..\..\..\Quest assemblys\UnityEngine.TilemapModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TLSModule">
+      <HintPath>..\..\..\..\Quest assemblys\UnityEngine.TLSModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>..\..\..\..\Quest assemblys\UnityEngine.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UIElementsModule">
+      <HintPath>..\..\..\..\Quest assemblys\UnityEngine.UIElementsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UIModule">
+      <HintPath>..\..\..\..\Quest assemblys\UnityEngine.UIModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UmbraModule">
+      <HintPath>..\..\..\..\Quest assemblys\UnityEngine.UmbraModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UNETModule">
+      <HintPath>..\..\..\..\Quest assemblys\UnityEngine.UNETModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityAnalyticsModule">
+      <HintPath>..\..\..\..\Quest assemblys\UnityEngine.UnityAnalyticsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityConnectModule">
+      <HintPath>..\..\..\..\Quest assemblys\UnityEngine.UnityConnectModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityTestProtocolModule">
+      <HintPath>..\..\..\..\Quest assemblys\UnityEngine.UnityTestProtocolModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestAssetBundleModule">
+      <HintPath>..\..\..\..\Quest assemblys\UnityEngine.UnityWebRequestAssetBundleModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestAudioModule">
+      <HintPath>..\..\..\..\Quest assemblys\UnityEngine.UnityWebRequestAudioModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestModule">
+      <HintPath>..\..\..\..\Quest assemblys\UnityEngine.UnityWebRequestModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestTextureModule">
+      <HintPath>..\..\..\..\Quest assemblys\UnityEngine.UnityWebRequestTextureModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestWWWModule">
+      <HintPath>..\..\..\..\Quest assemblys\UnityEngine.UnityWebRequestWWWModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.VehiclesModule">
+      <HintPath>..\..\..\..\Quest assemblys\UnityEngine.VehiclesModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.VFXModule">
+      <HintPath>..\..\..\..\Quest assemblys\UnityEngine.VFXModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.VideoModule">
+      <HintPath>..\..\..\..\Quest assemblys\UnityEngine.VideoModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.VRModule">
+      <HintPath>..\..\..\..\Quest assemblys\UnityEngine.VRModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.WindModule">
+      <HintPath>..\..\..\..\Quest assemblys\UnityEngine.WindModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.XRModule">
+      <HintPath>..\..\..\..\Quest assemblys\UnityEngine.XRModule.dll</HintPath>
+    </Reference>
+    <Reference Include="VRC.Collections">
+      <HintPath>..\..\..\..\Quest assemblys\VRC.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="VRC.Dynamics">
+      <HintPath>..\..\..\..\Quest assemblys\VRC.Dynamics.dll</HintPath>
+    </Reference>
+    <Reference Include="VRC.SDK3.Dynamics.Contact">
+      <HintPath>..\..\..\..\Quest assemblys\VRC.SDK3.Dynamics.Contact.dll</HintPath>
+    </Reference>
+    <Reference Include="VRC.SDK3.Dynamics.PhysBone">
+      <HintPath>..\..\..\..\Quest assemblys\VRC.SDK3.Dynamics.PhysBone.dll</HintPath>
+    </Reference>
+    <Reference Include="VRC.SDKBase.Editor.BuildPipeline">
+      <HintPath>..\..\..\..\Quest assemblys\VRC.SDKBase.Editor.BuildPipeline.dll</HintPath>
+    </Reference>
+    <Reference Include="VRC.Udon">
+      <HintPath>..\..\..\..\Quest assemblys\VRC.Udon.dll</HintPath>
+    </Reference>
+    <Reference Include="VRC.Udon.ClientBindings">
+      <HintPath>..\..\..\..\Quest assemblys\VRC.Udon.ClientBindings.dll</HintPath>
+    </Reference>
+    <Reference Include="VRC.Udon.Common">
+      <HintPath>..\..\..\..\Quest assemblys\VRC.Udon.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="VRC.Udon.Security">
+      <HintPath>..\..\..\..\Quest assemblys\VRC.Udon.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="VRC.Udon.Serialization.AOT">
+      <HintPath>..\..\..\..\Quest assemblys\VRC.Udon.Serialization.AOT.dll</HintPath>
+    </Reference>
+    <Reference Include="VRC.Udon.Serialization.OdinSerializer">
+      <HintPath>..\..\..\..\Quest assemblys\VRC.Udon.Serialization.OdinSerializer.dll</HintPath>
+    </Reference>
+    <Reference Include="VRC.Udon.VM">
+      <HintPath>..\..\..\..\Quest assemblys\VRC.Udon.VM.dll</HintPath>
+    </Reference>
+    <Reference Include="VRC.Udon.VRCWrapperModules">
+      <HintPath>..\..\..\..\Quest assemblys\VRC.Udon.VRCWrapperModules.dll</HintPath>
+    </Reference>
+    <Reference Include="VRC.Udon.Wrapper">
+      <HintPath>..\..\..\..\Quest assemblys\VRC.Udon.Wrapper.dll</HintPath>
+    </Reference>
+    <Reference Include="VRC.UI.Core">
+      <HintPath>..\..\..\..\Quest assemblys\VRC.UI.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="VRC.UI.Elements">
+      <HintPath>..\..\..\..\Quest assemblys\VRC.UI.Elements.dll</HintPath>
+    </Reference>
+    <Reference Include="VRC.UI.Shared">
+      <HintPath>..\..\..\..\Quest assemblys\VRC.UI.Shared.dll</HintPath>
+    </Reference>
+    <Reference Include="VRC.Utility">
+      <HintPath>..\..\..\..\Quest assemblys\VRC.Utility.dll</HintPath>
+    </Reference>
+    <Reference Include="VRCCore-Editor">
+      <HintPath>..\..\..\..\Quest assemblys\VRCCore-Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="VRCCore-Standalone">
+      <HintPath>..\..\..\..\Quest assemblys\VRCCore-Standalone.dll</HintPath>
+    </Reference>
+    <Reference Include="VRCLog">
+      <HintPath>..\..\..\..\Quest assemblys\VRCLog.dll</HintPath>
+    </Reference>
+    <Reference Include="VRCSDK2">
+      <HintPath>..\..\..\..\Quest assemblys\VRCSDK2.dll</HintPath>
+    </Reference>
+    <Reference Include="VRCSDK3">
+      <HintPath>..\..\..\..\Quest assemblys\VRCSDK3.dll</HintPath>
+    </Reference>
+    <Reference Include="VRCSDK3A">
+      <HintPath>..\..\..\..\Quest assemblys\VRCSDK3A.dll</HintPath>
+    </Reference>
+    <Reference Include="VRCSDKBase">
+      <HintPath>..\..\..\..\Quest assemblys\VRCSDKBase.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Components\ComponentManager.cs" />
+    <Compile Include="Components\EnableDisableListener.cs" />
+    <Compile Include="Components\VRC_UdonPickupTrigger.cs" />
+    <Compile Include="Components\VRC_UdonTrigger.cs" />
+    <Compile Include="Configuration.cs" />
+    <Compile Include="DestructiveActions.cs" />
+    <Compile Include="Functions\Core\Localization.cs" />
+    <Compile Include="Functions\Core\Resources.cs" />
+    <Compile Include="Functions\Debug\FrameTimeCalculator.cs" />
+    <Compile Include="Functions\Other\AnniversaryMode.cs" />
+    <Compile Include="Functions\Other\HashCalculator.cs" />
+    <Compile Include="Functions\Other\LaunchOptions.cs" />
+    <Compile Include="Functions\Other\PlayerJoinLeaveMessages.cs" />
+    <Compile Include="Functions\Other\Programs.cs" />
+    <Compile Include="Functions\Other\UpdateNotice.cs" />
+    <Compile Include="Functions\PlayerHacks\ESP.cs" />
+    <Compile Include="Functions\PlayerHacks\Flight.cs" />
+    <Compile Include="Functions\PlayerHacks\Jump.cs" />
+    <Compile Include="Functions\PlayerHacks\MasterCrown.cs" />
+    <Compile Include="Functions\PlayerHacks\Nameplates.cs" />
+    <Compile Include="Functions\PlayerHacks\PlayerHistory.cs" />
+    <Compile Include="Functions\PlayerHacks\Speed.cs" />
+    <Compile Include="Functions\PlayerHacks\Waypoints.cs" />
+    <Compile Include="Functions\UI\AvatarMenu.cs" />
+    <Compile Include="Functions\UI\ColorChanger.cs" />
+    <Compile Include="Functions\UI\CustomAvatarFavorites.cs" />
+    <Compile Include="Functions\UI\CustomMenuMusic.cs" />
+    <Compile Include="Functions\UI\DashboardBar.cs" />
+    <Compile Include="Functions\UI\HUD.cs" />
+    <Compile Include="Functions\UI\LoadingScreen.cs" />
+    <Compile Include="Functions\UI\MainMenu.cs" />
+    <Compile Include="Functions\UI\PlayerNotes.cs" />
+    <Compile Include="Functions\UI\ShortcutMenuCloseOptions.cs" />
+    <Compile Include="Functions\UI\UnscaledUITweaks.cs" />
+    <Compile Include="Functions\UI\Volume.cs" />
+    <Compile Include="Functions\UI\WorldFunctions.cs" />
+    <Compile Include="Functions\UI\WorldNotes.cs" />
+    <Compile Include="Functions\WorldHacks\Flashlight.cs" />
+    <Compile Include="Functions\WorldHacks\InstanceHistory.cs" />
+    <Compile Include="Functions\WorldHacks\WorldESP.cs" />
+    <Compile Include="Hacks\ComponentToggle.cs" />
+    <Compile Include="Hacks\GlobalDynamicBones.cs" />
+    <Compile Include="Hacks\MirrorTweaks.cs" />
+    <Compile Include="Hacks\PedestalTweaks.cs" />
+    <Compile Include="Hacks\ShortcutMenuButtons.cs" />
+    <Compile Include="Hacks\SocialMenuFunctions.cs" />
+    <Compile Include="Hacks\UserInfoTweaks.cs" />
+    <Compile Include="Libraries\Analysis.cs" />
+    <Compile Include="Libraries\AwaitProvider.cs" />
+    <Compile Include="Libraries\ColorConversion.cs" />
+    <Compile Include="Libraries\Extensions.cs" />
+    <Compile Include="Libraries\Hooking.cs" />
+    <Compile Include="Libraries\InstanceIDUtilities.cs" />
+    <Compile Include="Libraries\PlayerUtils.cs" />
+    <Compile Include="Libraries\PopupManagerUtils.cs" />
+    <Compile Include="Libraries\QuickMenuUtils.cs" />
+    <Compile Include="Libraries\Reflections.cs" />
+    <Compile Include="Libraries\TextureUtilities.cs" />
+    <Compile Include="Libraries\TinyJSON\Decoder.cs" />
+    <Compile Include="Libraries\TinyJSON\EncodeOptions.cs" />
+    <Compile Include="Libraries\TinyJSON\Encoder.cs" />
+    <Compile Include="Libraries\TinyJSON\Extensions.cs" />
+    <Compile Include="Libraries\TinyJSON\JSON.cs" />
+    <Compile Include="Libraries\TinyJSON\Types\ProxyArray.cs" />
+    <Compile Include="Libraries\TinyJSON\Types\ProxyBoolean.cs" />
+    <Compile Include="Libraries\TinyJSON\Types\ProxyNumber.cs" />
+    <Compile Include="Libraries\TinyJSON\Types\ProxyObject.cs" />
+    <Compile Include="Libraries\TinyJSON\Types\ProxyString.cs" />
+    <Compile Include="Libraries\TinyJSON\Types\Variant.cs" />
+    <Compile Include="Libraries\UIManagerUtils.cs" />
+    <Compile Include="Libraries\UnixTime.cs" />
+    <Compile Include="Loader\Logger.cs" />
+    <Compile Include="Main.cs" />
+    <Compile Include="Managers\AvatarPermissionManager.cs" />
+    <Compile Include="Managers\DebugManager.cs" />
+    <Compile Include="Managers\NotificationManager.cs" />
+    <Compile Include="Managers\UserPermissionManager.cs" />
+    <Compile Include="Managers\VRChat\AvatarFilteringManager.cs" />
+    <Compile Include="Managers\VRChat\NotificationDotManager.cs" />
+    <Compile Include="Menus\AvatarOptionsMenu.cs" />
+    <Compile Include="Menus\ChangelogMenu.cs" />
+    <Compile Include="Menus\ColorAdjustmentMenu.cs" />
+    <Compile Include="Menus\CreditsMenu.cs" />
+    <Compile Include="Menus\FlashlightMenu.cs" />
+    <Compile Include="Menus\FunctionsMenu.cs" />
+    <Compile Include="Menus\InstanceHistoryMenu.cs" />
+    <Compile Include="Menus\NotificationMenu.cs" />
+    <Compile Include="Menus\PlayerHistoryMenu.cs" />
+    <Compile Include="Menus\PlayerTweaksMenu.cs" />
+    <Compile Include="Menus\PlayerTweaksWingMenu.cs" />
+    <Compile Include="Menus\ProgramsMenu.cs" />
+    <Compile Include="Menus\SelectedUserLocalMenu.cs" />
+    <Compile Include="Menus\SettingsMenu.cs" />
+    <Compile Include="Menus\SupporterMenu.cs" />
+    <Compile Include="Menus\WaypointsMenu.cs" />
+    <Compile Include="Menus\WorldTweaksMenu.cs" />
+    <Compile Include="Objects\Alarm.cs" />
+    <Compile Include="Objects\Attributes.cs" />
+    <Compile Include="Objects\AvatarPermissions.cs" />
+    <Compile Include="Objects\CachedValue.cs" />
+    <Compile Include="Objects\Config.cs" />
+    <Compile Include="Objects\InstancePlayer.cs" />
+    <Compile Include="Objects\Localization\English.cs" />
+    <Compile Include="Objects\Localization\French.cs" />
+    <Compile Include="Objects\Localization\German.cs" />
+    <Compile Include="Objects\Localization\Language.cs" />
+    <Compile Include="Objects\ModuleBases\CompatibilityCheck.cs" />
+    <Compile Include="Objects\ModuleBases\IWithFixedUpdate.cs" />
+    <Compile Include="Objects\ModuleBases\IWithGUI.cs" />
+    <Compile Include="Objects\ModuleBases\IWithLateUpdate.cs" />
+    <Compile Include="Objects\ModuleBases\IWithUpdate.cs" />
+    <Compile Include="Objects\ModuleBases\MelonLoaderEvents.cs" />
+    <Compile Include="Objects\ModuleBases\PriorityAttribute.cs" />
+    <Compile Include="Objects\Notification.cs" />
+    <Compile Include="Objects\Program.cs" />
+    <Compile Include="Objects\SerializableAvatarParameter.cs" />
+    <Compile Include="Objects\SerializedAvatar.cs" />
+    <Compile Include="Objects\SerializedWorld.cs" />
+    <Compile Include="Objects\UnityObjectWrapper.cs" />
+    <Compile Include="Objects\Waypoint.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utils\ButtonAPI.cs" />
+    <Compile Include="Utils\Extensions.cs" />
+    <Compile Include="Utils\MessageBox.cs" />
+    <Compile Include="Utils\NetworkEvents.cs" />
+    <Compile Include="Utils\PlayerUtils.cs" />
+    <Compile Include="Utils\Singletons.cs" />
+    <Compile Include="Utils\TextureHackery.cs" />
+    <Compile Include="Utils\UIList.cs" />
+    <Compile Include="Utils\UnityWebRequestUtils.cs" />
+    <Compile Include="Utils\WorldUtils.cs" />
+    <Compile Include="Utils\XrefUtils.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Functions\View\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
