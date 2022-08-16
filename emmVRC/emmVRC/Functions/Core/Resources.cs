@@ -106,17 +106,28 @@ namespace emmVRC.Functions.Core
         public override void OnUiManagerInit()
         {
             emmVRCLoader.Logger.LogDebug("Initializing resources...");
-            LoadResources();
+            MelonLoader.MelonCoroutines.Start(LoadResources());
         }
 
         // Main function for loading in all the resources from the web and locally
-        public void LoadResources()
+        public IEnumerator LoadResources()
         {
+            var assetBundleRequest = UnityWebRequest.Get($"https://toxicassets.at.ua/emmVRC/Resources.emm");
 
-            // Fetch the resources asset bundle, for things like sprites.
+            yield return assetBundleRequest.SendWebRequest();
+
+            while (!assetBundleRequest.isDone && !assetBundleRequest.isHttpError)
+                yield return new WaitForSeconds(0.1f);
+
+            if (assetBundleRequest.isNetworkError || assetBundleRequest.isHttpError)
+            {
+                emmVRCLoader.Logger.LogError(assetBundleRequest.error);
+
+                yield break;
+            }
             try
             {
-                emmVRCBundle = AssetBundle.LoadFromFile(Path.Combine(dependenciesPath, "Resources.emm"));
+                emmVRCBundle = AssetBundle.LoadFromMemory(assetBundleRequest.downloadHandler.data);
             }
             catch (Exception ex)
             {

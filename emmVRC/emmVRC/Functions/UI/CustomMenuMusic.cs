@@ -23,13 +23,13 @@ namespace emmVRC.Functions.UI
         }
         public static IEnumerator Initialize()
         {
-            if (!Directory.Exists(Path.Combine(Environment.CurrentDirectory, "UserData/emmVRC\\CustomMenuMusic")))
-                Directory.CreateDirectory(Path.Combine(Environment.CurrentDirectory, "UserData/emmVRC\\CustomMenuMusic"));
-            if (File.Exists(Path.Combine(Environment.CurrentDirectory, "UserData/emmVRC\\custommenu.ogg")))
+            if (!Directory.Exists(Path.Combine(Environment.CurrentDirectory, "UserData/emmVRC/CustomMenuMusic")))
+                Directory.CreateDirectory(Path.Combine(Environment.CurrentDirectory, "UserData/emmVRC/CustomMenuMusic"));
+            if (File.Exists(Path.Combine(Environment.CurrentDirectory, "UserData/emmVRC/custommenu.ogg")))
             {
                 try
                 {
-                    File.Move(Path.Combine(Environment.CurrentDirectory, "UserData/emmVRC\\ustommenu.ogg"), Path.Combine(Environment.CurrentDirectory, "UserData/emmVRC\\CustomMenuMusic\\custommenu.ogg"));
+                    File.Move(Path.Combine(Environment.CurrentDirectory, "UserData/emmVRC/ustommenu.ogg"), Path.Combine(Environment.CurrentDirectory, "UserData/emmVRC/CustomMenuMusic/custommenu.ogg"));
                 }
                 catch (Exception ex)
                 {

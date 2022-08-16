@@ -6,7 +6,6 @@ namespace emmVRC.Objects
 {
     public class Notification
     {
-        public readonly DateTime timeCreated = DateTime.Now;
         public readonly string name = "";
         public readonly Sprite icon = null;
         public readonly string content = "";

@@ -21,19 +21,13 @@ namespace emmVRC.Menus
         public override void OnSceneWasLoaded(int buildIndex, string sceneName)
         {
             if (buildIndex != -1 || _initialized) return;
-            basePage = new Utils.MenuPage("emmVRC_MainMenu", "emmVRC", true, false, true, () => System.Diagnostics.Process.Start("https://discord.gg/emmVRC"), "<color=#FF69B4>emmVRC</color> version " + Objects.Attributes.Version+".\nClick to join our Discord!", Functions.Core.Resources.onlineSprite, true);
+            basePage = new Utils.MenuPage("emmVRC_MainMenu", "emmVRC", true, false, false, null, "<color=#FF69B4>emmVRC</color> version " + Objects.Attributes.Version, Functions.Core.Resources.onlineSprite, true);
             mainTab = new Utils.Tab(Utils.ButtonAPI.menuTabBase.transform.parent, "emmVRC_MainMenu", "emmVRC", Functions.Core.Resources.TabIcon, () => 
             {
                 if (Configuration.JSONConfig.AcceptedEULAVersion != Objects.Attributes.EULAVersion)
                 {
                     basePage.OpenMenu();
-                    ButtonAPI.GetQuickMenuInstance().ShowCustomDialog("Welcome to emmVRC!", (Configuration.JSONConfig.AcceptedEULAVersion == "0.0.0" ? "To use emmVRC, you must first read and agree to our End User License Agreement.\n\nThis will open in your web browser." : "We have updated our End User License Agreement. To continue, you must read and agree to it.\n\nThis will open in your web browser."), "Open EULA", "Agree", "Decline", () =>
-                    {
-                        Application.OpenURL("https://ttyf.me/emmvrceula");
-                    }, () =>
-                    {
-                        Configuration.WriteConfigOption("AcceptedEULAVersion", Objects.Attributes.EULAVersion);
-                    });
+                    ButtonAPI.GetQuickMenuInstance().ShowConfirmDialog("Welcome to emmVRC!", "emmVRC Ported to Quest. By XoX-Toxic");
                 }
                 basePage.OpenMenu();
             });
@@ -51,7 +45,7 @@ namespace emmVRC.Menus
             Components.EnableDisableListener textListener = textBase.AddComponent<Components.EnableDisableListener>();
             textListener.OnEnabled += () =>
             {
-                textText.text = "<align=\"left\">  Version " + Objects.Attributes.Version.ToString(3) + (Objects.Attributes.Beta ? ("b"+Objects.Attributes.Version.Revision) : "") + "<line-height=0>\n" + "Rebuild By XoX-Toxic";
+                textText.text = "Ported By XoX-Toxic";
             };
 
             notificationsGroup = new ButtonGroup(basePage, "Notifications");

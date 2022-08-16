@@ -59,7 +59,7 @@ namespace emmVRC.Menus
         }
         public static void EnterMenu(TextMeshProUGUI text)
         {
-            text.text = "<size=50>No More Supporters!</size>\n\n";
+            text.text = "<size=50>Empty till fixxed WebRequest!</size>\n\n";
         }
     }
 }

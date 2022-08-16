@@ -165,65 +165,28 @@ namespace emmVRC.Utils
         }
         #endregion
         #region QuickMenu ShowOKDialog
-        private static MethodInfo ourShowOKDialogMethod;
-        public static MethodInfo ShowOKDialogMethod
-        {
-            get
-            {
-                if (ourShowOKDialogMethod != null) return ourShowOKDialogMethod;
-                var targetMethod = typeof(VRC.UI.Elements.QuickMenu).GetMethods()
-                    .First(it => it != null && it.GetParameters().Length == 3 && it.Name.Contains("_PDM") && it.GetParameters().First().ParameterType == typeof(string) && it.GetParameters().Last().ParameterType == typeof(Il2CppSystem.Action) && XrefScanner.XrefScan(it).Any(jt => jt.Type == XrefType.Global && jt.ReadAsObject()?.ToString() == "ConfirmDialog"));
-                ourShowOKDialogMethod = targetMethod;
-                return ourShowOKDialogMethod;
-            }
-        }
 
         public static void ShowOKDialog(this VRC.UI.Elements.QuickMenu qm, string title, string message, Action okButton = null)
         {
-            ShowOKDialogMethod.Invoke(qm, new object[] { title, message, DelegateSupport.ConvertDelegate<Il2CppSystem.Action>(okButton) });
+            qm.Method_Public_Void_String_String_Action_String_Boolean_0(title, message, okButton);
         }
         #endregion
         #region QuickMenu ShowConfirmDialog
-        private static MethodInfo ourShowConfirmDialogMethod;
-        public static MethodInfo ShowConfirmDialogMethod
-        {
-            get
-            {
-                if (ourShowConfirmDialogMethod != null) return ourShowConfirmDialogMethod;
-                var targetMethod = typeof(VRC.UI.Elements.QuickMenu).GetMethods()
-                    .First(it => it != null && it.GetParameters().Length == 4 && it.Name.Contains("_PDM") && it.GetParameters()[0].ParameterType == typeof(string) && it.GetParameters()[1].ParameterType == typeof(string) && it.GetParameters()[2].ParameterType == typeof(Il2CppSystem.Action) && it.GetParameters()[3].ParameterType == typeof(Il2CppSystem.Action) && XrefScanner.UsedBy(it).ToList().Count > 30);
-                ourShowConfirmDialogMethod = targetMethod;
-                return ourShowConfirmDialogMethod;
-            }
-        }
 
         public static void ShowConfirmDialog(this VRC.UI.Elements.QuickMenu qm, string title, string message, Action yesButton = null, Action noButton = null)
         {
-            ShowConfirmDialogMethod.Invoke(qm, new object[] { title, message, DelegateSupport.ConvertDelegate<Il2CppSystem.Action>(yesButton), DelegateSupport.ConvertDelegate<Il2CppSystem.Action>(noButton) });
+            qm.Method_Public_Void_String_String_Action_Action_String_String_0(title, message, yesButton, noButton);
         }
 
         #endregion
         #region QuickMenu ShowCustomDialog
-        private static MethodInfo ourShowCustomDialogMethod;
-        public static MethodInfo ShowCustomDialogMethod
-        {
-            get
-            {
-                if (ourShowCustomDialogMethod != null) return ourShowCustomDialogMethod;
-                var targetMethod = typeof(VRC.UI.Elements.QuickMenu).GetMethods()
-                    .First(it => it != null && it.GetParameters().Length == 8 && it.Name.Contains("Method_Public_Void_String_String_String_String_String_Action_Action_Action_PDM_") && XrefScanner.XrefScan(it).Any(jt => jt.Type == XrefType.Global && jt.ReadAsObject()?.ToString() == "ConfirmDialog"));
-                ourShowCustomDialogMethod = targetMethod;
-                return ourShowCustomDialogMethod;
-            }
-        }
 
         public static void ShowCustomDialog(this VRC.UI.Elements.QuickMenu qm, string title, string message, string button1Text, string button2Text, string button3Text,  Action button1Action = null, Action button2Action = null, Action button3Action = null)
         {
-            ShowCustomDialogMethod.Invoke(qm, new object[] { title, message, button1Text, button2Text, button3Text, DelegateSupport.ConvertDelegate<Il2CppSystem.Action>(button1Action), DelegateSupport.ConvertDelegate<Il2CppSystem.Action>(button2Action), DelegateSupport.ConvertDelegate<Il2CppSystem.Action>(button3Action) });
+            qm.Method_Public_Void_String_String_String_String_String_Action_Action_Action_0(title, message, button1Text, button2Text, button3Text, button1Action, button2Action, button3Action);
         }
 
         #endregion
-        //public static void ShowCustomDialog(this VRC.UI.Elements.QuickMenu qm, string title, string message, string button1Text, string button2Text, string button3Text, Action button1Action = null, Action button2Action = null, Action button3Action = null) => qm.Method_Public_Void_String_String_String_String_String_Action_Action_Action_PDM_1(title, message, button1Text, button2Text, button3Text, button1Action, button2Action, button3Action);
         #region QuickMenu AskConfirmOpenURL
         private static MethodInfo ourAskConfirmOpenURLMethod;
         public static MethodInfo AskConfirmOpenURLMethod

@@ -8,7 +8,7 @@ namespace emmVRC.Objects
 {
     public class Attributes
     {
-        public static readonly Version Version = new Version(3, 3, 1, 0);
+        public static readonly Version Version = new Version(3, 3, 2, 0);
         public const int LastTestedBuildNumber = 1205;
         public const string EULAVersion = "1.0.0";
         public const bool Beta = false;
@@ -18,6 +18,7 @@ namespace emmVRC.Objects
         public const string Changelog =
             "<b>v3.3.2</b>\n" +
             "• Quest Compatible Made by XoX-Toxic.\n" +
+            "• Fixxed QM Popups.\n" +
             "• Removed Network (Avatar Search, Pin Login etc).\n\n" +
             "<b>v3.3.1</b>\n" +
             "• Fixed unfavoriting avatars.\n\n" +

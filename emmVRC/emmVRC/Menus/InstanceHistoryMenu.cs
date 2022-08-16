@@ -82,7 +82,7 @@ namespace emmVRC.Menus
                 SimpleSingleButton instanceButton = new SimpleSingleButton(mainHistoryGroup, world.WorldName + "\n" + InstanceIDUtilities.GetInstanceID(world.WorldTags), () =>
                 {
                     VRCFlowManager.prop_VRCFlowManager_0.EnterWorld(world.WorldID, world.WorldTags); //Just kill me
-                }, world.WorldName + (world.WorldTags.Contains("region(jp)") ? " [JP Region]" : (world.WorldTags.Contains("region(eu)") ? " [EU Region]" : "")) + " (" + Functions.WorldHacks.InstanceHistory.PrettifyInstanceType(world.WorldType) + ")" + ", last joined " + UnixTime.ToDateTime(world.loggedDateTime).ToShortDateString() + " " + UnixTime.ToDateTime(world.loggedDateTime).ToShortTimeString() + "\nSelect to join");
+                }, world.WorldName + (world.WorldTags.Contains("region(jp)") ? " [JP Region]" : (world.WorldTags.Contains("region(eu)") ? " [EU Region]" : "")) + " (" + Functions.WorldHacks.InstanceHistory.PrettifyInstanceType(world.WorldType) + ")" + ", last joined\nSelect to join");
                 instanceButton.gameObject.transform.SetAsFirstSibling();
                 instanceHistoryButtons.Add(instanceButton);
 

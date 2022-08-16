@@ -49,92 +49,19 @@ namespace emmVRC.Functions.UI
         private static PageAvatar currPageAvatar;
         private static bool error = false;
         private static bool errorWarned;
-        private static bool Searching = false;
         public static List<ApiAvatar> LoadedAvatars;
         private static GameObject refreshButton;
         private static GameObject backButton;
         private static GameObject forwardButton;
         private static GameObject pageTicker;
         private static GameObject sortButton;
-        private static bool waitingForSearch = false;
         public static int currentPage = 0;
         private static SortingMode currentSortingMode = SortingMode.DateAdded;
         private static bool sortingInverse = false; // False = First-to-Last, True = Last-to-First
-
-        private static int _apiAvatarOffset;
         
-        private delegate void SetPickerContentFromApiModelDelegate(IntPtr thisPtr, IntPtr nativeMethodInfo);
-        private static SetPickerContentFromApiModelDelegate _ourSetPickerContentFromApiModelDelegate;
-        
-        private static void SetPickerContentFromApiModelPatch(IntPtr thisPtr, IntPtr nativeMethodInfo)
-        {
-            DecodeApiAvatar(thisPtr, nativeMethodInfo).NoAwait("ApiAvatar Decode");
-        }
-
-        private static async Task DecodeApiAvatar(IntPtr thisPtr, IntPtr nativeMethodInfo)
-        {
-            ApiAvatar apiAvatar = null;
-            
-            unsafe
-            {
-                var apiAvatarPtr = *(IntPtr*)(thisPtr + _apiAvatarOffset);
-                if (apiAvatarPtr != IntPtr.Zero)
-                    apiAvatar = new ApiAvatar(apiAvatarPtr);
-            }
-
-            if (apiAvatar == null)
-            {
-                await Main.AwaitUpdate.Yield();
-                _ourSetPickerContentFromApiModelDelegate(thisPtr, nativeMethodInfo);
-                
-                return;
-            }
-           
-            
-            await Main.AwaitUpdate.Yield();
-            _ourSetPickerContentFromApiModelDelegate(thisPtr, nativeMethodInfo);
-        }
 
         public override void OnUiManagerInit()
         {
-            try
-            {
-                unsafe
-                {
-                    //var setPickerFromContentFromApiModel =
-                    //    typeof(UiAvatarList.__c__DisplayClass28_1)
-                    //        .GetMethod(nameof(UiAvatarList.__c__DisplayClass28_1._SetPickerContentFromApiModel_b__1));
-                    var setPickerContentFromApiModel =
-                        typeof(UiAvatarList.ObjectNPrivateSealedApObApUnique)
-                            .GetMethods(BindingFlags.Public | BindingFlags.Instance)
-                            .First(m => XrefScanner.XrefScan(m)
-                                .Any(xi =>
-                                    xi.Type == XrefType.Global
-                                    && xi.ReadAsObject() != null &&
-                                    xi.ReadAsObject().ToString()
-                                        .Equals("You cannot use this avatar as it has not been published for this platform.")));
-
-                    var apiAvatarField = typeof(UiAvatarList.ObjectNPrivateSealedApObApUnique).GetProperty(nameof(
-                        UiAvatarList.ObjectNPrivateSealedApObApUnique.field_Public_ApiAvatar_1));
-                    _apiAvatarOffset = (int)IL2CPP.il2cpp_field_get_offset((IntPtr)UnhollowerUtils
-                        .GetIl2CppFieldInfoPointerFieldForGeneratedFieldAccessor(apiAvatarField.GetMethod)
-                        .GetValue(null));
-
-                    var originalMethodPointer = *(IntPtr*)(IntPtr)UnhollowerUtils
-                        .GetIl2CppMethodInfoPointerFieldForGeneratedMethod(setPickerContentFromApiModel)
-                        .GetValue(null);
-                    
-                    MelonUtils.NativeHookAttach((IntPtr)(&originalMethodPointer), 
-                        Marshal.GetFunctionPointerForDelegate<SetPickerContentFromApiModelDelegate>(SetPickerContentFromApiModelPatch));
-                    _ourSetPickerContentFromApiModelDelegate =
-                        Marshal.GetDelegateForFunctionPointer<SetPickerContentFromApiModelDelegate>(
-                            originalMethodPointer);
-                }
-            }
-            catch (Exception ex)
-            {
-                Logger.LogError(ex);
-            }
             
             if (Configuration.JSONConfig.SortingMode <= 2)
                 currentSortingMode = (SortingMode)Configuration.JSONConfig.SortingMode;
@@ -160,18 +87,13 @@ namespace emmVRC.Functions.UI
                 if (!flag)
                 {
 
-                    if (!Utils.PlayerUtils.DoesUserHaveVRCPlus())
-                        VRCUiPopupManager.prop_VRCUiPopupManager_0.ShowAlert("VRChat Plus Required", Core.Localization.currentLanguage.VRCPlusMessage, 0f);
+                    if (((apiAvatar.releaseStatus == "public" || apiAvatar.authorId == APIUser.CurrentUser.id) && apiAvatar.releaseStatus != null))
+                    {
+                        FavoriteAvatar(apiAvatar).NoAwait(nameof(FavoriteAvatar));
+                    }
                     else
                     {
-                        if (((apiAvatar.releaseStatus == "public" || apiAvatar.authorId == APIUser.CurrentUser.id) && apiAvatar.releaseStatus != null))
-                        {
-                            FavoriteAvatar(apiAvatar).NoAwait(nameof(FavoriteAvatar));
-                        }
-                        else
-                        {
-                            VRCUiPopupManager.field_Private_Static_VRCUiPopupManager_0.ShowStandardPopup("emmVRC", Core.Localization.currentLanguage.FavouriteFailedPrivateMessage, "Dismiss", new System.Action(() => { VRCUiPopupManager.field_Private_Static_VRCUiPopupManager_0.HideCurrentPopup(); }));
-                        }
+                        VRCUiPopupManager.field_Private_Static_VRCUiPopupManager_0.ShowStandardPopup("emmVRC", Core.Localization.currentLanguage.FavouriteFailedPrivateMessage, "Dismiss", new System.Action(() => { VRCUiPopupManager.field_Private_Static_VRCUiPopupManager_0.HideCurrentPopup(); }));
                     }
                 }
                 else
@@ -252,7 +174,6 @@ namespace emmVRC.Functions.UI
             refreshButton.GetComponent<Button>().onClick.RemoveAllListeners();
             refreshButton.GetComponent<Button>().onClick.AddListener(new System.Action(() =>
             {
-                Searching = false;
                 MelonLoader.MelonCoroutines.Start(JumpToStart());
             }));
             refreshButton.GetComponent<RectTransform>().sizeDelta /= new Vector2(4f, 1f);
@@ -395,23 +316,6 @@ namespace emmVRC.Functions.UI
                     yield return new WaitForEndOfFrame();
                 }
             }
-        }
-        public static IEnumerator SearchAvatarsAfterDelay(string query)
-        {
-            yield return new WaitForSecondsRealtime(1f);
-            if (Configuration.JSONConfig.AvatarFavoritesJumpToStart)
-            {
-                while (NewAvatarList.scrollRect.normalizedPosition.x > 0)
-                {
-                    NewAvatarList.scrollRect.normalizedPosition = new Vector2(NewAvatarList.scrollRect.normalizedPosition.x - 0.1f, 0);
-                    yield return new WaitForEndOfFrame();
-                }
-            }
-            SearchAvatars(query).NoAwait(nameof(SearchAvatars));
-        }
-        public static async Task SearchAvatars(string query)
-        {
-           
         }
         
         public void OnUpdate()

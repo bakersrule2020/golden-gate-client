@@ -928,7 +928,7 @@ namespace emmVRC.Utils
         }
         public void OpenLeftMenu()
         {
-            ButtonAPI.GetMenuStateControllerInstance().Method_Public_Void_String_ObjectPublicStBoAc1ObObUnique_Boolean_EnumNPublicSealedvaNoLeRiBoIn6vUnique_0(leftPage.field_Public_String_0, leftPage.field_Protected_ObjectPublicStBoAc1ObObUnique_0, false, UIPage.EnumNPublicSealedvaNoLeRiBoIn6vUnique.Right);
+            ButtonAPI.GetMenuStateControllerInstance().Method_Public_Void_String_ObjectPublicStBoAc1ObObUnique_Boolean_EnumNPublicSealedvaNoLeRiBoIn6vUnique_0(leftPage.field_Public_String_0, leftPage.field_Protected_ObjectPublicStBoAc1ObObUnique_0, false, UIPage.EnumNPublicSealedvaNoLeRiBoIn6vUnique.Left);
             ButtonAPI.GetLeftWingControllerInstance().field_Private_ArrayOf_WingMenu_0.First().prop_String_0 = leftPage.field_Public_String_0;
         }
         public void OpenRightMenu()

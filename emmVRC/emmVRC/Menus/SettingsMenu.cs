@@ -68,16 +68,6 @@ namespace emmVRC.Menus
         private static ToggleButton avatarPublicListToggle;
         private static ToggleButton avatarOtherListToggle;
 
-        private static ButtonGroup keybindsGroup;
-        private static ToggleButton keybindsToggle;
-        private static SimpleSingleButton flightKeybindButton;
-        private static SimpleSingleButton noclipKeybindButton;
-        private static SimpleSingleButton speedKeybindButton;
-        private static SimpleSingleButton thirdPersonKeybindButton;
-        private static SimpleSingleButton hudEnabledKeybindButton;
-        private static SimpleSingleButton respawnKeybindButton;
-        private static SimpleSingleButton goHomeKeybindButton;
-
         private static bool _initialized = false;
         public override void OnSceneWasLoaded(int buildIndex, string sceneName)
         {

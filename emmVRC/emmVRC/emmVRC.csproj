@@ -451,7 +451,6 @@
     <Compile Include="Functions\UI\ColorChanger.cs" />
     <Compile Include="Functions\UI\CustomAvatarFavorites.cs" />
     <Compile Include="Functions\UI\CustomMenuMusic.cs" />
-    <Compile Include="Functions\UI\DashboardBar.cs" />
     <Compile Include="Functions\UI\HUD.cs" />
     <Compile Include="Functions\UI\LoadingScreen.cs" />
     <Compile Include="Functions\UI\MainMenu.cs" />
@@ -554,7 +553,6 @@
     <Compile Include="Utils\TextureHackery.cs" />
     <Compile Include="Utils\UIList.cs" />
     <Compile Include="Utils\UnityWebRequestUtils.cs" />
-    <Compile Include="Utils\WorldUtils.cs" />
     <Compile Include="Utils\XrefUtils.cs" />
   </ItemGroup>
   <ItemGroup>
