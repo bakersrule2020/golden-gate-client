@@ -42,6 +42,7 @@ namespace emmVRC.Menus
             new SimpleSingleButton(creditsMembersGroup, "<color=#71368A>knah</color>", null, "Netcode developer, as well as developer of the Unhollower, the most important part of MelonLoader");
             new SimpleSingleButton(creditsMembersGroup, "<color=#71368A>Slaynash</color>", null, "Original developer of VRCModLoader, VRCTools and AvatarFav, the entire reason why emmVRC exists today");
             new SimpleSingleButton(creditsMembersGroup, "<color=#71368A>DubyaDude</color>", null, "Developer of the Ruby Button API, the library that allowed emmVRC to be one of the biggest VR-friendly mods");
+            new SimpleSingleButton(creditsMembersGroup, "<color=#9542f5>XoX-Toxic</color>", null, "Ported & Fixxed emmVRC for Quest (Open-Beta)");
 
             creditsNotePage = new MenuPage("emmVRC_CreditsNotes", "Note to you", false, true);
             creditsNotePage.menuContents.GetComponent<UnityEngine.UI.VerticalLayoutGroup>().childControlHeight = true;

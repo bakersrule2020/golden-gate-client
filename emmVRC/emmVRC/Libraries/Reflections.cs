@@ -259,12 +259,12 @@ namespace emmVRC.Libraries
         #endregion
         public static GameObject menuContent(this VRCUiManager mngr)
         {
-            return mngr.field_Public_GameObject_0;
+            return mngr.field_Public_GameObject_3;
         }
 
         public static void EnterWorld(this VRCFlowManager mngr, string id, string tags)
         {
-            Networking.GoToRoom(id + tags);
+            Networking.GoToRoom($"{id}:{tags}");
         }
         #region QuickMenu Show User
         internal static Type _selectedUserManagerType;

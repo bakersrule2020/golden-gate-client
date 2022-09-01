@@ -65,6 +65,8 @@ namespace emmVRC.Menus
         }
         private static void OpenMenu()
         {
+            historyToggle.SetToggleState(Configuration.JSONConfig.PlayerHistoryEnable);
+            logPlayerToggle.SetToggleState(Configuration.JSONConfig.LogPlayerJoin);
             foreach (SimpleSingleButton btn in playerHistoryButtons)
                 GameObject.Destroy(btn.gameObject);
             foreach (ButtonGroup grp in playerHistoryGroups)
@@ -91,7 +93,7 @@ namespace emmVRC.Menus
                         Timeout = 5;
                         MelonLoader.MelonCoroutines.Start(WaitForTimeout());
                     }
-                }, "Joined " + plr.TimeJoinedStamp);
+                }, "Joined UNKNOW");
                 playerButton.gameObject.transform.SetAsFirstSibling();
                 playerHistoryButtons.Add(playerButton);
             }

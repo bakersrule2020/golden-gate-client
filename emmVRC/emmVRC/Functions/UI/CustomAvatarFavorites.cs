@@ -120,7 +120,6 @@ namespace emmVRC.Functions.UI
             });
 
             var oldPublicAvatarList = pageAvatarComp.transform.Find("Vertical Scroll View/Viewport/Content/Legacy Avatar List").gameObject;
-            oldPublicAvatarList = pageAvatarComp.transform.Find("Vertical Scroll View/Viewport/Content/Legacy Avatar List").gameObject;
             PublicAvatarList = GameObject.Instantiate(oldPublicAvatarList, oldPublicAvatarList.transform.parent);
             PublicAvatarList.transform.SetAsFirstSibling();
 
@@ -289,7 +288,6 @@ namespace emmVRC.Functions.UI
                 }
                 if (error && !errorWarned)
                 {
-                    Managers.emmVRCNotificationsManager.AddNotification(new Notification("emmVRC Network", Functions.Core.Resources.errorSprite, Core.Localization.currentLanguage.FavouriteListLoadErrorMessage, true, false, null, "", "", true, null, "Dismiss"));
                     errorWarned = true;
                 }
             };

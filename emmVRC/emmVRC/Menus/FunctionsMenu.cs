@@ -11,7 +11,6 @@ namespace emmVRC.Menus
     {
         public static MenuPage basePage;
         private static Tab mainTab;
-        internal static ButtonGroup notificationsGroup;
         internal static ButtonGroup tweaksGroup;
         internal static ButtonGroup featuresGroup;
         internal static ButtonGroup otherGroup;
@@ -26,8 +25,15 @@ namespace emmVRC.Menus
             {
                 if (Configuration.JSONConfig.AcceptedEULAVersion != Objects.Attributes.EULAVersion)
                 {
-                    basePage.OpenMenu();
-                    ButtonAPI.GetQuickMenuInstance().ShowConfirmDialog("Welcome to emmVRC!", "emmVRC Ported to Quest. By XoX-Toxic");
+                    ButtonAPI.menuTabBase.transform.parent.Find("Page_Dashboard").GetComponent<Button>().onClick.Invoke();
+                    ButtonAPI.GetQuickMenuInstance().ShowConfirmDialog("Welcome to emmVRC!", "emmVRC Ported to Quest. By XoX-Toxic", () =>
+                    {
+                        Configuration.WriteConfigOption("AcceptedEULAVersion", Objects.Attributes.EULAVersion);
+                    }, () =>
+                    {
+                        Configuration.WriteConfigOption("AcceptedEULAVersion", Objects.Attributes.EULAVersion);
+                    });
+                    return;
                 }
                 basePage.OpenMenu();
             });
@@ -45,26 +51,15 @@ namespace emmVRC.Menus
             Components.EnableDisableListener textListener = textBase.AddComponent<Components.EnableDisableListener>();
             textListener.OnEnabled += () =>
             {
-                textText.text = "Ported By XoX-Toxic";
+                textText.text = "Version " +Objects.Attributes.Version.ToString(3);
             };
 
-            notificationsGroup = new ButtonGroup(basePage, "Notifications");
             tweaksGroup = new Utils.ButtonGroup(basePage.menuContents, "Tweaks");
             featuresGroup = new Utils.ButtonGroup(basePage.menuContents, "Features");
             otherGroup = new Utils.ButtonGroup(basePage.menuContents, "Other");
             basePage.menuContents.parent.parent.parent.GetChild(0).Find("RightItemContainer/Button_QM_Expand/Icon").GetComponent<UnityEngine.RectTransform>().sizeDelta = new UnityEngine.Vector2(72, 72);
             basePage.menuContents.parent.parent.parent.GetChild(0).Find("RightItemContainer/Button_QM_Expand/Icon").GetComponent<UnityEngine.RectTransform>().localPosition = new UnityEngine.Vector3(0f, 8f, 0f);
             _initialized = true;
-
-            Managers.emmVRCNotificationsManager.OnNotificationAdded += (Objects.Notification notif) =>
-            {
-                mainTab.SetBadge(Managers.emmVRCNotificationsManager.Notifications.Count == 0 ? false : true, Managers.emmVRCNotificationsManager.Notifications.Count + " NEW");
-            };
-            Managers.emmVRCNotificationsManager.OnNotificationRemoved += (Objects.Notification notif) =>
-            {
-                mainTab.SetBadge(Managers.emmVRCNotificationsManager.Notifications.Count == 0 ? false : true, Managers.emmVRCNotificationsManager.Notifications.Count + " NEW");
-            };
-            mainTab.SetBadge(Managers.emmVRCNotificationsManager.Notifications.Count == 0 ? false : true, Managers.emmVRCNotificationsManager.Notifications.Count + " NEW");
         }
     }
 }

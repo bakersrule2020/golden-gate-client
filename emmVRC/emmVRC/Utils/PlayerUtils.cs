@@ -31,7 +31,7 @@ namespace emmVRC.Utils
         }
         public static bool DoesUserHaveVRCPlus()
         {
-            return VRC.Core.APIUser.CurrentUser.isSupporter;
+            return true;
         }
     }
 }

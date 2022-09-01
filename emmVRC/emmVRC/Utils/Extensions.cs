@@ -9,11 +9,27 @@ using VRC;
 using VRC.Core;
 using VRC.DataModel;
 using VRC.DataModel.Core;
+using VRC.SDKBase;
+using System.IO;
 
 namespace emmVRC.Utils
 {
     public static class Extensions
     {
+        public static Sprite LoadSpriteFromDisk(this string path)
+        {
+            if (string.IsNullOrEmpty(path)) return null;
+            byte[] array = File.ReadAllBytes(path);
+            if (array == null || array.Length == 0)
+            {
+                return null;
+            }
+            Texture2D texture2D = new Texture2D(512, 512);
+            if (!ImageConversion.LoadImage(texture2D, array)) return null;
+            Sprite sprite = Sprite.CreateSprite(texture2D, new Rect(0f, 0f, (float)texture2D.width, (float)texture2D.height), new Vector2(0, 0), 100000f, 1000U, SpriteMeshType.FullRect, Vector4.zero, false);
+            sprite.hideFlags |= HideFlags.DontUnloadUnusedAsset;
+            return sprite;
+        }
         public static GameObject FindObject(this GameObject parent, string name)
         {
             Transform[] trs = parent.GetComponentsInChildren<Transform>(true);
@@ -206,50 +222,14 @@ namespace emmVRC.Utils
             AskConfirmOpenURLMethod.Invoke(qm, new object[] { url });
         }
         #endregion
-        #region APIUser ToIUser
-        // Thank you Loukylor for this!
-
-
-        private static MethodInfo _apiUserToIUser;
-        public static MethodInfo ToIUserMethod
-        {
-            get
-            {
-                if (_apiUserToIUser == null)
-                {
-                    Type iUserParent = typeof(VRCPlayer).Assembly.GetTypes()
-                .First(type => type.GetMethods()
-                    .FirstOrDefault(method => method.Name.StartsWith("Method_Private_Void_Action_1_ApiWorldInstance_Action_1_String_")) != null && type.GetMethods()
-                    .FirstOrDefault(method => method.Name.StartsWith("Method_Public_Virtual_Final_New_Observable_1_List_1_String_")) == null);
-                    _apiUserToIUser = typeof(ObjectPublicDi2StObUnique).GetMethod("Method_Public_TYPE_String_TYPE2_Boolean_0");
-                    _apiUserToIUser = _apiUserToIUser.MakeGenericMethod(iUserParent, typeof(APIUser));
-                }
-                return _apiUserToIUser;
-            }
-        }
-
-        public static InterfacePublicAbstractStCoStBoObSt1BoSi1Unique ToIUser(this APIUser value)
-        {
-            return ((Il2CppSystem.Object)_apiUserToIUser.Invoke(DataModelManager.field_Private_Static_DataModelManager_0.field_Private_ObjectPublicDi2StObUnique_0, new object[3] { value.id, value, false })).Cast<InterfacePublicAbstractStCoStBoObSt1BoSi1Unique>();
-        }
-        #endregion
         #region VRCPlayer SpawnEmoji
-        private static MethodInfo ourSpawnEmojiMethod;
-        public static MethodInfo SpawnEmojiMethod
-        {
-            get
-            {
-                if (ourSpawnEmojiMethod != null) return ourSpawnEmojiMethod;
-                var targetMethod = typeof(VRCPlayer).GetMethods()
-                    .FirstOrDefault(it => it != null && it.GetParameters().Length == 1 && it.GetParameters().First().ParameterType == typeof(int) && XrefScanner.XrefScan(it).Any(jt => jt.Type == XrefType.Global && jt.ReadAsObject() != null && jt.ReadAsObject().ToString().Contains("SpawnEmojiRPC")));
-                ourSpawnEmojiMethod = targetMethod;
-                return ourSpawnEmojiMethod;
-            }
-        }
 
         public static void SpawnEmoji(this VRCPlayer player, int emojiId)
         {
-            SpawnEmojiMethod.Invoke(player, new object[] { emojiId });
+            Il2CppSystem.Int32 @int = default(Il2CppSystem.Int32);
+            @int.m_value = emojiId;
+            Il2CppSystem.Object @object = @int.BoxIl2CppObject();
+            Networking.RPC(RPC.Destination.All, player.gameObject, "SpawnEmojiRPC", new Il2CppSystem.Object[] { @object });
         }
         #endregion
     }

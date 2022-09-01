@@ -24,10 +24,7 @@ namespace emmVRC.Menus
         private static ToggleButton everyoneGlobalDynamicBonesToggle;
         private static ToggleButton vrFlightControlsToggle;
         private static ToggleButton trackingSavingToggle;
-        private static ToggleButton actionMenuIntegrationToggle;
-        private static ToggleButton clockToggle;
         private static ToggleButton masterIconToggle;
-        private static ToggleButton hudToggle;
         private static ToggleButton forceRestartToggle;
 
         private static ButtonGroup networkGroup;
@@ -77,7 +74,6 @@ namespace emmVRC.Menus
                 ButtonAPI.GetQuickMenuInstance().ShowConfirmDialog("emmVRC", "Would you like to export your emmVRC Favorite Avatars?", new System.Action(() =>
                 {
                     Task.Run(CustomAvatarFavorites.ExportAvatars).NoAwait("Export Avatars");
-                    Managers.emmVRCNotificationsManager.AddNotification(new Objects.Notification("Avatar Export", Functions.Core.Resources.alertSprite, "Your emmVRC Favorite list has been exported to UserData/emmVRC/ExportedList.json", true, false, null, "", "", true, null, "Dismiss"));
                 }), null);
             }, "Export your emmVRC Avatar Favorites to a file");
             settingsButton = new SingleButton(FunctionsMenu.otherGroup, "Settings", OpenMenu, "Configure settings with emmVRC", Functions.Core.Resources.SettingsIcon);
@@ -121,23 +117,10 @@ namespace emmVRC.Menus
             trackingSavingToggle = new ToggleButton(featuresGroup, "Calibration\nSaving", (bool val) => {
                 Configuration.WriteConfigOption("TrackingSaving", val);
             }, "Enables saving of FBT calibration", "Disables saving of FBT calibration");
-            actionMenuIntegrationToggle = new ToggleButton(featuresGroup, "Action Menu\nIntegration", (bool val) =>
-            {
-                Configuration.WriteConfigOption("ActionMenuIntegration", val);
-            }, "Enables emmVRC Action Menu Integration", "Disables emmVRC Action Menu Integration");
-            clockToggle = new ToggleButton(featuresGroup, "Clock", (bool val) =>
-            {
-                Configuration.WriteConfigOption("ClockEnabled", val);
-            }, "Enables the Quick Menu clock, which shows both the local time and the current time spent in this instance", "Disables the Quick Menu clock");
-            new ButtonGroup(settingsPage, "");
             masterIconToggle = new ToggleButton(featuresGroup, "Master Icon", (bool val) =>
             {
                 Configuration.WriteConfigOption("MasterIconEnabled", val);
             }, "Enables the Master Icon, which shows above the current master of the instance", "Disables the Master Icon");
-            hudToggle = new ToggleButton(featuresGroup, "HUD", (bool val) =>
-            {
-                Configuration.WriteConfigOption("HUDEnabled", val);
-            }, "Enables the desktop HUD, which shows information such as the current position and players in the instance", "Disable the desktop HUD");
             forceRestartToggle = new ToggleButton(featuresGroup, "Force Restart", (bool val) =>
             {
                 Configuration.WriteConfigOption("ForceRestartButtonEnabled", val);
@@ -281,10 +264,7 @@ namespace emmVRC.Menus
             everyoneGlobalDynamicBonesToggle.SetToggleState(Configuration.JSONConfig.EveryoneGlobalDynamicBonesEnabled);
             vrFlightControlsToggle.SetToggleState(Configuration.JSONConfig.VRFlightControls);
             trackingSavingToggle.SetToggleState(Configuration.JSONConfig.TrackingSaving);
-            actionMenuIntegrationToggle.SetToggleState(Configuration.JSONConfig.ActionMenuIntegration);
-            clockToggle.SetToggleState(Configuration.JSONConfig.ClockEnabled);
             masterIconToggle.SetToggleState(Configuration.JSONConfig.MasterIconEnabled);
-            hudToggle.SetToggleState(Configuration.JSONConfig.HUDEnabled);
             forceRestartToggle.SetToggleState(Configuration.JSONConfig.ForceRestartButtonEnabled);
 
             avatarFavoriteListToggle.SetToggleState(Configuration.JSONConfig.AvatarFavoritesEnabled);

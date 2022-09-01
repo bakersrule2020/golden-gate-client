@@ -10,6 +10,5 @@ namespace emmVRC.Objects
     {
         public string Name = "";
         public string UserID = "";
-        public string TimeJoinedStamp = "";
     }
 }

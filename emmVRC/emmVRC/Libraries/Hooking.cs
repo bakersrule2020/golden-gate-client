@@ -21,7 +21,7 @@ namespace emmVRC.Functions.Core
         {
             try
             {
-                Main.instance.HarmonyInstance.Patch(typeof(PortalInternal).GetMethods(System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance).Single(it => it != null && it.ReturnType == typeof(void) && it.GetParameters().Length == 0 && UnhollowerRuntimeLib.XrefScans.XrefScanner.XrefScan(it).Any(jt => jt.Type == UnhollowerRuntimeLib.XrefScans.XrefType.Global && jt.ReadAsObject()?.ToString() == " was at capacity, cannot enter.")), new HarmonyLib.HarmonyMethod(typeof(Hooking).GetMethod("OnPortalEntered", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static)));
+                Main.instance.HarmonyInstance.Patch(typeof(PortalTrigger).GetMethod(nameof(PortalTrigger.OnTriggerEnter)), new HarmonyLib.HarmonyMethod(typeof(Hooking).GetMethod("OnPortalEntered", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static)));
             }
             catch (Exception ex)
             {
@@ -66,7 +66,7 @@ namespace emmVRC.Functions.Core
             }
         }*/
 
-        private static bool OnPortalEntered(PortalInternal __instance)
+        private static bool OnPortalEntered(PortalTrigger __instance)
         {
             if (!Configuration.JSONConfig.PortalBlockingEnable)
                 return true;

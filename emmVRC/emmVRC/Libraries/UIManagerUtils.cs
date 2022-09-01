@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnhollowerRuntimeLib.XrefScans;
+using UnityEngine;
 using VRC.UI;
 
 namespace emmVRC.Libraries
@@ -15,62 +16,36 @@ namespace emmVRC.Libraries
             manager.field_Private_List_1_String_0.Add(message);
         }
 
-        #region Show Screen
-        public delegate VRCUiPage ShowScreenAction(VRCUiPage page);
-
-        private static ShowScreenAction ourShowScreenAction;
-
-        public static ShowScreenAction ShowScreenActionAction
+        public static VRCUiPage ShowScreen(this VRCUiManager Instance, VRCUiPage page)
         {
-            get
+            return Instance.Method_Public_VRCUiPage_VRCUiPage_0(page);
+        }
+        public static void ShowScreen(this VRCUiManager Instance, string pageName)
+        {
+            VRCUiPage page = Instance.GetPage(pageName);
+            if (page != null)
             {
-                if (ourShowScreenAction != null) return ourShowScreenAction;
-
-                var targetMethod = typeof(VRCUiManager).GetMethods(System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.Public)
-                    .Single(it => it.ReturnType == typeof(VRCUiPage) && it.GetParameters().Length == 1 && it.GetParameters()[0].ParameterType == typeof(VRCUiPage) && XrefScanner.XrefScan(it).Any(jt => jt.Type == XrefType.Global && jt.ReadAsObject()?.ToString() == "Screen Not Found - "));
-
-                ourShowScreenAction = (ShowScreenAction)Delegate.CreateDelegate(typeof(ShowScreenAction), VRCUiManager.prop_VRCUiManager_0, targetMethod);
-
-                return ourShowScreenAction;
+                Instance.ShowScreen(page);
             }
         }
-        public static VRCUiPage ShowScreen(this VRCUiManager manager, VRCUiPage page)
-        {
-            return ShowScreenActionAction.Invoke(page);
-        }
-        #endregion
 
-        /*public static void ShowScreen(this VRCUiManager manager, VRCUiPage page)
+        public static VRCUiPage GetPage(this VRCUiManager Instance, string screenPath)
         {
-            manager.Method_Public_VRCUiPage_VRCUiPage_1(page);
-        }*/
-        public static void ShowScreen(this VRCUiManager manager, string pageName, bool otherThing)
-        {
-            VRCUiPage page = GetPage.Invoke(pageName);
-            if (page != null && otherThing)
+            GameObject gameObject = GameObject.Find(screenPath);
+            VRCUiPage vrcuiPage = null;
+            if (gameObject != null)
             {
-                manager.ShowScreen(page);
+                vrcuiPage = gameObject.GetComponent<VRCUiPage>();
+                if (vrcuiPage == null)
+                {
+                    Console.WriteLine("Screen Not Found - " + screenPath);
+                }
             }
-        }
-        #region Get Page
-        public delegate VRCUiPage GetPageAction(string page);
-
-        private static GetPageAction ourGetPageAction;
-
-        public static GetPageAction GetPage
-        {
-            get
+            else
             {
-                if (ourGetPageAction != null) return ourGetPageAction;
-
-                var targetMethod = typeof(VRCUiPopupManager).GetMethods(System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.Public)
-                    .Single(it => it.GetParameters().Length == 1 && XrefScanner.XrefScan(it).Any(jt => jt.Type == XrefType.Global && jt.ReadAsObject()?.ToString() == "Screen Not Found - "));
-
-                ourGetPageAction = (GetPageAction)Delegate.CreateDelegate(typeof(GetPageAction), VRCUiPopupManager.prop_VRCUiPopupManager_0, targetMethod);
-
-                return ourGetPageAction;
+                Console.WriteLine("Screen Not Found - " + screenPath);
             }
+            return vrcuiPage;
         }
-        #endregion
     }
 }

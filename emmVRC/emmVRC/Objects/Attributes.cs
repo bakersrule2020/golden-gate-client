@@ -18,7 +18,11 @@ namespace emmVRC.Objects
         public const string Changelog =
             "<b>v3.3.2</b>\n" +
             "• Quest Compatible Made by XoX-Toxic.\n" +
-            "• Fixxed QM Popups.\n" +
+            "• Ported to Open-Beta.\n" +
+            "• Fixxed Extensions.\n" +
+            "  -  Fixxed Icons.\n" +
+            "  -  Fixxed Buttons.\n" +
+            "• Removed Alarm Clock + Everything with time.\n" +
             "• Removed Network (Avatar Search, Pin Login etc).\n\n" +
             "<b>v3.3.1</b>\n" +
             "• Fixed unfavoriting avatars.\n\n" +

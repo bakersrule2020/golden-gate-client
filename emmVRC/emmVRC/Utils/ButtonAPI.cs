@@ -72,14 +72,14 @@ namespace emmVRC.Utils
             buttonGroupHeaderBase = GameObject.Find("UserInterface").transform.Find("Canvas_QuickMenu(Clone)/Container/Window/QMParent/Menu_Dashboard/ScrollRect/Viewport/VerticalLayoutGroup/Header_QuickActions").gameObject;
             menuPageBase = GameObject.Find("UserInterface").transform.Find("Canvas_QuickMenu(Clone)/Container/Window/QMParent/Menu_Dashboard").gameObject;
             menuTabBase = GameObject.Find("UserInterface").transform.Find("Canvas_QuickMenu(Clone)/Container/Window/Page_Buttons_QM/HorizontalLayoutGroup/Page_Settings").gameObject;
-            sliderBase = GameObject.Find("UserInterface").transform.Find("Canvas_QuickMenu(Clone)/Container/Window/QMParent/Menu_AudioSettings/Content/Audio/VolumeSlider_Master").gameObject;
+            sliderBase = GameObject.Find("UserInterface").transform.Find("Canvas_QuickMenu(Clone)/Container/Window/QMParent/Menu_AudioSettings/Panel_QM_ScrollRect/Viewport/VerticalLayoutGroup/Audio/VolumeSlider_Master").gameObject;
             wingPageBase = GameObject.Find("UserInterface").transform.Find("Canvas_QuickMenu(Clone)/Container/Window/Wing_Left/Container/InnerContainer/Explore").gameObject;
             wingSingleButtonBase = GameObject.Find("UserInterface").transform.Find("Canvas_QuickMenu(Clone)/Container/Window/Wing_Left/Container/InnerContainer/WingMenu/ScrollRect/Viewport/VerticalLayoutGroup/Button_Profile").gameObject;
             
             wingPageBaseL = GameObject.Find("UserInterface").transform.Find("Canvas_QuickMenu(Clone)/Container/Window/Wing_Left/Container/InnerContainer").gameObject;
             wingPageBaseR = GameObject.Find("UserInterface").transform.Find("Canvas_QuickMenu(Clone)/Container/Window/Wing_Right/Container/InnerContainer").gameObject;
 
-            onIconSprite = GameObject.Find("UserInterface").transform.Find("Canvas_QuickMenu(Clone)/Container/Window/QMParent/Menu_Notifications/Panel_NoNotifications_Message/Icon").GetComponent<Image>().sprite;
+            onIconSprite = Functions.Core.Resources.CheckMarkIcon;
             plusIconSprite = GameObject.Find("UserInterface").transform.Find("Canvas_QuickMenu(Clone)/Container/Window/QMParent/Menu_Here/ScrollRect/Viewport/VerticalLayoutGroup/Buttons_WorldActions/Button_FavoriteWorld/Icon").GetComponent<Image>().sprite;
             xIconSprite = toggleButtonBase.transform.Find("Icon_Off").GetComponent<Image>().sprite;
             trashIconSprite = GameObject.Find("UserInterface").transform.Find("Canvas_QuickMenu(Clone)/Container/Window/QMParent/Menu_Here/ScrollRect/Viewport/VerticalLayoutGroup/Buttons_WorldActions/Button_FavoriteWorld/Icon_Secondary").GetComponent<Image>().sprite;
@@ -929,12 +929,10 @@ namespace emmVRC.Utils
         public void OpenLeftMenu()
         {
             ButtonAPI.GetMenuStateControllerInstance().Method_Public_Void_String_ObjectPublicStBoAc1ObObUnique_Boolean_EnumNPublicSealedvaNoLeRiBoIn6vUnique_0(leftPage.field_Public_String_0, leftPage.field_Protected_ObjectPublicStBoAc1ObObUnique_0, false, UIPage.EnumNPublicSealedvaNoLeRiBoIn6vUnique.Left);
-            ButtonAPI.GetLeftWingControllerInstance().field_Private_ArrayOf_WingMenu_0.First().prop_String_0 = leftPage.field_Public_String_0;
         }
         public void OpenRightMenu()
         {
             ButtonAPI.GetMenuStateControllerInstance().Method_Public_Void_String_ObjectPublicStBoAc1ObObUnique_Boolean_EnumNPublicSealedvaNoLeRiBoIn6vUnique_0(rightPage.field_Public_String_0, rightPage.field_Protected_ObjectPublicStBoAc1ObObUnique_0, false, UIPage.EnumNPublicSealedvaNoLeRiBoIn6vUnique.Right);
-            ButtonAPI.GetRightWingControllerInstance().field_Private_ArrayOf_WingMenu_0.First().prop_String_0 = rightPage.field_Public_String_0;
         }
         public void CloseLeftMenu()
         {
