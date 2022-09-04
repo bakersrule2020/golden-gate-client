@@ -120,14 +120,15 @@ namespace emmVRC.Utils
             }
         }
 
-        private static void OnInstanceChange()
+        private static void OnInstanceChange(ApiWorld __0, ApiWorldInstance __1)
         {
-            ApiWorld apiWorld = RoomManager.field_Internal_Static_ApiWorld_0;
-            ApiWorldInstance apiWorldInstance = RoomManager.field_Internal_Static_ApiWorldInstance_0;
-            emmVRCLoader.Logger.LogDebug($"OnInstanceChange: {apiWorld.ToString()}, {apiWorldInstance.ToString()}");
+            if (__0 == null || __1 == null)
+                return;
+
+            emmVRCLoader.Logger.LogDebug($"OnInstanceChange: {__0.ToString()}, {__1.ToString()}");
             try
             {
-                OnInstanceChanged?.DelegateSafeInvoke(apiWorld, apiWorldInstance);
+                OnInstanceChanged?.DelegateSafeInvoke(__0, __1);
             }
             catch (Exception ex)
             {
@@ -145,7 +146,7 @@ namespace emmVRC.Utils
 
             Main.instance.HarmonyInstance.Patch(typeof(VRCPlayer).GetMethod(nameof(VRCPlayer.Awake)), null, typeof(NetworkEvents).GetMethod(nameof(OnVRCPlayerAwake), BindingFlags.Static | BindingFlags.NonPublic).ToNewHarmonyMethod());
             Main.instance.HarmonyInstance.Patch(typeof(VRCPlayer).GetMethod(nameof(VRCPlayer.Destroy)), typeof(NetworkEvents).GetMethod(nameof(OnVRCPlayerDestroy), BindingFlags.Static | BindingFlags.NonPublic).ToNewHarmonyMethod());
-            Main.instance.HarmonyInstance.Patch(typeof(NetworkManager).GetMethod(nameof(NetworkManager.OnJoinedRoom)), typeof(NetworkEvents).GetMethod(nameof(OnInstanceChange), BindingFlags.NonPublic | BindingFlags.Static).ToNewHarmonyMethod());
+            Main.instance.HarmonyInstance.Patch(typeof(RoomManager).GetMethod(nameof(RoomManager.Method_Public_Static_Boolean_ApiWorld_ApiWorldInstance_String_Int32_0)), typeof(NetworkEvents).GetMethod(nameof(OnInstanceChange), BindingFlags.NonPublic | BindingFlags.Static).ToNewHarmonyMethod());
         }
     }
 }
