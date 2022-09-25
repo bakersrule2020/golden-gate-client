@@ -6,4 +6,4 @@
 * Place the folder into "UserData\emmVRC" to use the Icons
 
 ## For Everyone that calls me a Skid
-![Skids](https://cdn.discordapp.com/attachments/1013908770352533534/1023454216641056839/unknown.png?size=4096)
+![Skids](https://i.ibb.co/BzkJTBs/68747470733a2f2f63646e2e646973636f72646170702e636f6d2f6174746163686d656e74732f3130313339303837373033.jpg)
