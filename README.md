@@ -1,6 +1,6 @@
 ## Golden Gate Client
-A Free And Open-Source Client Based On ToxicStuff's Port Of EmmVRC To Quest!
-Huge Thanks To Them For Making This Possible
+* A Free And Open-Source Client Based On ToxicStuff's Port Of EmmVRC To Quest!
+* Huge Thanks To Them For Making This Possible
 ## Original Description
 ## emmVRC-Rewrite-Quest
 * Not Full working still needs a good Rewrite, but the code is ass ngl
