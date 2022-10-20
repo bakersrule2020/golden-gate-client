@@ -1,3 +1,4 @@
+## Discontinued Due To New UI Because I Don't Feel Like Writing An Edited Version Of The Ui Library.
 ## Golden Gate Client
 * A Free And Open-Source Client Based On ToxicStuff's Port Of EmmVRC To Quest!
 * Huge Thanks To Them For Making This Possible
